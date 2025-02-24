@@ -1,12 +1,14 @@
 pipeline {
     agent {
-        dockerfile true
+        dockerfile {
+            filename 'Dockerfile'
+            dir './'
+        }
     }
-
     stages {
-        stage('Cloning Git') {
+        stage('Test') {
             steps {
-                sh 'echo checking out source code'
+                sh 'node --eval "console.log(process.platform, process.env.CI)"'
             }
         }
     }
