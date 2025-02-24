@@ -1,12 +1,13 @@
-pipeline{
-agent { dockerfile true }
+pipeline {
+    agent {
+        dockerfile true
+    }
 
-    stages{
-
-       stage( 'Cloning Git' ) {
-         steps{
-           sh 'echo checking out source code'
-         }
-       }
+    stages {
+        stage('Cloning Git') {
+            steps {
+                sh 'echo checking out source code'
+            }
+        }
     }
 }
