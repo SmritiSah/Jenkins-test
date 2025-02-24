@@ -1,14 +1,14 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:16-alpine'
-      args '-v /c/ProgramData/Jenkins/.jenkins/workspace/dj1:/app -w /app'
-    }
-  }
+  agent any
+
   stages {
-    stage('Verify Node Version') {
+    stage('Run in Docker') {
       steps {
-        sh 'node --version'
+        script {
+          docker.image('node:16-alpine').inside('-v /c/ProgramData/Jenkins/.jenkins/workspace/dj1:/app -w /app') {
+            sh 'node --version'
+          }
+        }
       }
     }
   }
